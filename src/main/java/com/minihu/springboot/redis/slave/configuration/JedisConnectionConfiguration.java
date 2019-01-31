@@ -21,6 +21,7 @@ import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.data.redis.JedisClientConfigurationBuilderCustomizer;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -47,6 +48,8 @@ import java.util.List;
  */
 @Configuration
 @EnableConfigurationProperties(RedisProperties.class)
+//若配置禁用读写分离，则JedisConnectionConfiguration默认走spring-boot-starter-data-redis自动配置，否则覆盖原有配置
+@ConditionalOnProperty(name = "spring.redis.separation.enabled", havingValue = "true", matchIfMissing = true)
 @ConditionalOnClass({ GenericObjectPool.class, JedisConnection.class, Jedis.class })
 class JedisConnectionConfiguration extends RedisConnectionConfiguration {
 

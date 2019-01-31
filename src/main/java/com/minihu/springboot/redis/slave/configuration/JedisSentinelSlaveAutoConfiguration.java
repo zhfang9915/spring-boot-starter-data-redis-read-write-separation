@@ -50,8 +50,6 @@ public class JedisSentinelSlaveAutoConfiguration {
     @ConditionalOnMissingBean(name = "readerStringRedisTemplate")
     public StringRedisTemplate readerStringRedisTemplate(
             JedisSentinelSlaveConnectionFactory jedisSentinelSlaveConnectionFactory) {
-        //ReaderStringRedisTemplate template = new ReaderStringRedisTemplate();
-        //template.setConnectionFactory(jedisSentinelSlaveConnectionFactory);
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
         stringRedisTemplate.setConnectionFactory(jedisSentinelSlaveConnectionFactory);
         return stringRedisTemplate;
