@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.minihu.springboot.redis.slave.configuration.RedisAutoConfiguration,\
+com.minihu.springboot.redis.slave.configuration.JedisSentinelSlaveAutoConfiguration
